@@ -28,7 +28,7 @@ export LOGOUT_INACTIVE_USERS="${LOGOUT_INACTIVE_USERS:-"true"}"
 export WORKSPACE_TIMEOUT_IN_MINUTES="${WORKSPACE_TIMEOUT_IN_MINUTES:-"480"}"
 # NIEHS Custom
 export NIEHS_CUSTOM="true"
-export NIEHS_REPO=""
+export NIEHS_GITOPS_URL="https://raw.githubusercontent.com/NIEHS/pcor_gen3_artifacts/feature/model0/custom_configs/gitops.json"
 
 
 # lib -----------------------------
@@ -120,8 +120,8 @@ gitops_config() {
 
 ##### NIEHS CUSTOM BLOCK
 
-if NIEHS_CUSTOM="true"
-  wget raw gitops json from github url into default.json
+if NIEHS_CUSTOM=="true"
+  wget $NIEHS_GITOPS_URL data/config/default.json
 fi
 
 #####
