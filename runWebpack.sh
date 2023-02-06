@@ -26,9 +26,13 @@ export TIER_ACCESS_LIMIT="${TIER_ACCESS_LIMIT:-"1000"}"
 export USE_INDEXD_AUTHZ="${USE_INDEXD_AUTHZ:-"false"}"
 export LOGOUT_INACTIVE_USERS="${LOGOUT_INACTIVE_USERS:-"true"}"
 export WORKSPACE_TIMEOUT_IN_MINUTES="${WORKSPACE_TIMEOUT_IN_MINUTES:-"480"}"
+# NIEHS Custom
+export NIEHS_CUSTOM="true"
+export NIEHS_REPO=""
 
 
 # lib -----------------------------
+
 
 declare -a gitopsFiles=(
   gitops.json data/config/gitops.json
@@ -112,6 +116,17 @@ gitops_config() {
     done
   fi
 }
+
+
+##### NIEHS CUSTOM BLOCK
+
+if NIEHS_CUSTOM="true"
+  wget raw gitops json from github url into default.json
+fi
+
+#####
+
+
 
 # main -------------------
 
