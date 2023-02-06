@@ -120,8 +120,13 @@ gitops_config() {
 
 ##### NIEHS CUSTOM BLOCK
 
-if NIEHS_CUSTOM=="true"
-  wget $NIEHS_GITOPS_URL data/config/default.json
+
+
+echo "INFO: NIEHS_CUSTOM set to $NIEHS_CUSTOM"
+if [[ "$NIEHS_CUSTOM" == "true" ]]; then
+  echo "INFO: wget to $NIEHS_GITOPS_URL"
+  curl -o data/config/default.json $NIEHS_GITOPS_URL  
+  echo "INFO: wget complete"
 fi
 
 #####
