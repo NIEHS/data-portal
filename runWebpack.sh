@@ -26,9 +26,13 @@ export TIER_ACCESS_LIMIT="${TIER_ACCESS_LIMIT:-"1000"}"
 export USE_INDEXD_AUTHZ="${USE_INDEXD_AUTHZ:-"false"}"
 export LOGOUT_INACTIVE_USERS="${LOGOUT_INACTIVE_USERS:-"true"}"
 export WORKSPACE_TIMEOUT_IN_MINUTES="${WORKSPACE_TIMEOUT_IN_MINUTES:-"480"}"
+# NIEHS Custom
+export NIEHS_CUSTOM="true"
+export NIEHS_GITOPS_URL="https://raw.githubusercontent.com/NIEHS/pcor_gen3_artifacts/feature/model0/custom_configs/gitops.json"
 
 
 # lib -----------------------------
+
 
 declare -a gitopsFiles=(
   gitops.json data/config/gitops.json
@@ -112,6 +116,22 @@ gitops_config() {
     done
   fi
 }
+
+
+##### NIEHS CUSTOM BLOCK
+
+
+
+echo "INFO: NIEHS_CUSTOM set to $NIEHS_CUSTOM"
+if [[ "$NIEHS_CUSTOM" == "true" ]]; then
+  echo "INFO: wget to $NIEHS_GITOPS_URL"
+  curl -o data/config/default.json $NIEHS_GITOPS_URL  
+  echo "INFO: wget complete"
+fi
+
+#####
+
+
 
 # main -------------------
 
